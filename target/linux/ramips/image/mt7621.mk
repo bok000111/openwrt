@@ -2112,6 +2112,19 @@ define Device/keenetic_kn-3510
 endef
 TARGET_DEVICES += keenetic_kn-3510
 
+define Device/kt_km15-103h
+  $(Device/nand)
+  DEVICE_VENDOR := KT
+  DEVICE_MODEL := KM15-103H
+  KERNEL_LOADADDR := 0x80001000
+  KERNEL_SIZE := 8192k
+  IMAGE_SIZE := 49152k
+  KERNEL := kernel-bin | lzma | fit lzma $$(KDIR)/image-$$(firstword $$(DEVICE_DTS)).dtb
+  KERNEL_INITRAMFS := $$(KERNEL)
+  DEVICE_PACKAGES := kmod-mt7915e kmod-mt7915-firmware kmod-usb3
+endef
+TARGET_DEVICES += kt_km15-103h
+
 define Device/lenovo_newifi-d1
   $(Device/dsa-migration)
   $(Device/uimage-lzma-loader)
